@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const todosRoutes = require('./routes/todos.routes');
+const connectDatabase = require('./database/db');
 
 const app = express();
 app.use(express.json());
@@ -13,4 +14,7 @@ app.use('/', (req, res) => {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port} 🔥`));
+app.listen(port, () => {
+    connectDatabase();
+    console.log(`Server running on port ${port} 🔥`);
+});
