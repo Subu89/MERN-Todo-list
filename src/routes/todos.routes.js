@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { getTodos, addTodos, updateTodos, deleteTodos } = require('../controllers/todos.controller');
+const { privateRoute } = require('../middlewares/authMiddlewares');
 
-router.get('/', getTodos)
+router.get('/', privateRoute, getTodos)
 
-router.post('/', addTodos)
+router.post('/', privateRoute, addTodos)
 
-router.put('/:id', updateTodos)
+router.put('/:id', privateRoute, updateTodos)
 
-router.delete('/:id', deleteTodos)
+router.delete('/:id', privateRoute, deleteTodos)
 
 module.exports = router;
